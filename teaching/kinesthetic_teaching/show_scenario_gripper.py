@@ -4,7 +4,7 @@ import time
 import keyboard  # 키보드 입력 감지 모듈
 from xarm.wrapper import XArmAPI
 
-# csv 저장 경로 설정: C:\Users\PDI\Downloads\0401_Csv
+# csv 저장 경로 설정: data/kinesthetic demonstration/0401_Csv
 data_folder = r'..\..\data\kinesthetic demonstration\0401_Csv'
 os.makedirs(data_folder, exist_ok=True)
 
@@ -45,6 +45,8 @@ with open(datafile_path, 'w', newline='') as csvfile:
 
     try:
         start_time = time.time()
+        print("Data recording started. Press Ctrl+C to stop.")
+        
         while True:
             if keyboard.is_pressed('up'):
                 arm.set_suction_cup(True)

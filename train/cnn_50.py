@@ -21,13 +21,13 @@ class paramModel():
     epochs = 50000
     batch_size = 8
     weight_decay = 1e-4
-    log_dir = r"C:/Users/MAIN/Desktop/jdocuments/je_kinesthetic/logs/dtcnn50_v11"
+    log_dir = r"./created_model/logs/cnn_model"
 
 pm = paramModel()
 
 # Dataset 정의 (기존과 동일)
 class XArm4SecDataset(torch.utils.data.Dataset):
-    def __init__(self, data_path="C:/Users/MAIN/Desktop/jdocuments/je_kinesthetic/data/cam0426(50)"):
+    def __init__(self, data_path="../data/pumping result"):
         super().__init__()
         self.data_path = data_path
         self.csv_files = sorted(glob.glob(os.path.join(data_path, "*.csv")))
@@ -146,7 +146,7 @@ def main():
     print(f"[INFO] Using device: {device}")
     
     # 데이터셋 및 DataLoader 생성
-    dataset = XArm4SecDataset(data_path="C:/Users/MAIN/Desktop/jdocuments/je_kinesthetic/data/cam0426(50)")
+    dataset = XArm4SecDataset()  # 기본값 사용
     print(f"[INFO] Dataset size: {len(dataset)}")
     if len(dataset) == 0:
         print("[WARN] No valid data.")
@@ -190,8 +190,9 @@ def main():
     print("[INFO] Training Done.\n")
     
     # 모델 저장
-    output_dir = r"C:/Users/MAIN/Desktop/jdocuments/je_kinesthetic"
-    save_model_path = os.path.join(output_dir, "best_dtcnn50_v11.pt")
+    output_dir = r"./created_model"
+    os.makedirs(output_dir, exist_ok=True)  # 폴더가 없으면 생성
+    save_model_path = os.path.join(output_dir, "cnn_model.pt")
     os.makedirs(os.path.dirname(save_model_path), exist_ok=True)
     torch.save(model.state_dict(), save_model_path)
     print(f"[INFO] Model saved at: {save_model_path}")
@@ -209,7 +210,7 @@ def main():
     pred = pred.permute(2, 0, 1).cpu().numpy()
     
     # 추론 결과 CSV 저장 (첫 배치의 첫 샘플 사용)
-    save_csv = os.path.join(output_dir, "inference_result_dtcnn50_v11.csv")
+    save_csv = os.path.join(output_dir, "inference_result.csv")
     with open(save_csv, 'w', newline='') as f:
         fieldnames = [
             'timestamp', 'x', 'y', 'z', 'roll', 'pitch', 'yaw',

@@ -11,7 +11,7 @@ import mediapipe as mp
 from CoordinateTransform import transform_camera_to_robot, calculate_T, set_points, undistort_points
 
 # YOLOv8-Pose 모델 로드
-pose_model = YOLO("C:/Users/PDI/Downloads/yolov8n-pose.pt")
+pose_model = YOLO("./learned_pt_file/yolov8n-pose.pt")
 
 # Mediapipe Hands 설정
 mp_hands = mp.solutions.hands
@@ -200,8 +200,8 @@ def main():
                         help='Frames per second to process')
     parser.add_argument('--target', type=str, choices=['wrist', 'hand'], default='wrist',
                         help='Choose which to record: "wrist" or "hand"')
-    # CSV 기본 경로를 C:/Users/PDI/Downloads/0320_testRec/output.csv 로 수정
-    parser.add_argument('--output_csv', type=str, default='C:/Users/PDI/Downloads/output.csv',
+    # CSV 기본 경로를 상대경로로 수정
+    parser.add_argument('--output_csv', type=str, default=r'..\..\data\observation demonstration\output.csv',
                         help='Output CSV file path')
     args = parser.parse_args()
     

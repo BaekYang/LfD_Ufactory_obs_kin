@@ -252,7 +252,7 @@ def main():
     parser.add_argument('--target', type=str, default='wrist',
                         help='Options: "wrist", "hand", "landmark0" ~ "landmark20"')
     parser.add_argument('--output_csv', type=str, 
-                        default=r'..\data\observation\output.csv',
+                        default=r'..\..\data\observation demonstration\output.csv',
                         help='Output CSV file path')
     args = parser.parse_args()
     

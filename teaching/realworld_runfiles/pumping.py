@@ -2,9 +2,29 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+import os
+
+# 파일을 찾는 함수
+def find_csv_file(filename):
+    # 가능한 경로들
+    possible_paths = [
+        f'../../data/kinesthetic demonstration/{filename}',
+        f'../../data/observation demonstration/{filename}',
+        f'./data/{filename}'  # 기존 경로도 유지
+    ]
+    
+    for path in possible_paths:
+        if os.path.exists(path):
+            print(f"Found file: {path}")
+            return path
+    
+    # 파일을 찾지 못한 경우
+    raise FileNotFoundError(f"Could not find {filename} in any of the following paths:\n" + 
+                          "\n".join(possible_paths))
 
 # Load the original CSV file
-file_path = './data/test.csv'
+filename = 'test.csv'  # 파일명만 지정!!
+file_path = find_csv_file(filename)
 data = pd.read_csv(file_path)
 
 # Define the target sampling rate
@@ -22,7 +42,8 @@ for column in data.columns[1:]:  # Skip 'timestamp' for interpolation
     interpolated_data[column] = np.interp(new_timestamps, data['timestamp'], data[column])
 
 # Save the interpolated data to a new CSV file
-output_path = './data/pumping_interpolated_trajectory.csv'
+output_path = '../../data/pumping result/pumping_interpolated_trajectory.csv'
+os.makedirs(os.path.dirname(output_path), exist_ok=True)  # 폴더가 없으면 생성
 interpolated_data.to_csv(output_path, index=False)
 
 print(f"Interpolated CSV saved to: {output_path}")

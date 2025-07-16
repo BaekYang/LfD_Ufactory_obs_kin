@@ -7,8 +7,8 @@ from xarm.wrapper import XArmAPI
 import pyzed.sl as sl
 
 # CSV와 SVO 파일 저장 경로 설정
-csv_folder = r'C:\Users\PDI\Downloads\0401_Csv'
-svo_folder = r'C:\Users\PDI\Downloads\0401_Rec'
+csv_folder = r'..\..\data\kinesthetic demonstration'
+svo_folder = r'.\demonstration_videos'
 os.makedirs(csv_folder, exist_ok=True)
 os.makedirs(svo_folder, exist_ok=True)
 
