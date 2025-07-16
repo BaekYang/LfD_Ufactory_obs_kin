@@ -10,6 +10,7 @@ import cv2
 import mediapipe as mp
 from CoordinateTransform import transform_camera_to_robot, calculate_T, set_points, undistort_points
 
+# 동영상부터 찍고 오세요
 # YOLOv8-Pose 모델 로드
 pose_model = YOLO("./learned_pt_file/yolov8n-pose.pt")
 
