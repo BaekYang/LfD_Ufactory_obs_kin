@@ -6,6 +6,10 @@ import threading
 from xarm.wrapper import XArmAPI
 import pyzed.sl as sl
 
+# 이 코드는 zed를 실행시켜서 교시를 기록하는 코드입니다.
+# 로봇암 (가동시켰을 경우) 기록됩니다.
+# 로봇암이 없으면 이 코드를 사용하지 마세요.
+
 # CSV와 SVO 파일 저장 경로 설정
 csv_folder = r'..\..\data\kinesthetic demonstration'
 svo_folder = r'.\demonstration_videos'
