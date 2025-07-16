@@ -1,0 +1,5 @@
+python observational_learning.py --input_svo_file "C:\Users\PDI\Downloads\0320_testRec\test1.svo2" --target hand
+python observational_learning.py --input_svo_file "C:\Users\PDI\Downloads\directteaching_depth\0313\test5.svo2" --target hand
+경진실험 : python observational_learning.py --input_svo_file "C:\Users\PDI\Downloads\0320_testRec\test104.svo2"
+
+
