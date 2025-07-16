@@ -11,7 +11,7 @@ import mediapipe as mp
 from CoordinateTransform import transform_camera_to_robot, calculate_T, set_points, undistort_points
 import os
 
-# YOLOv8-Pose 모델 로드
+# YOLOv8-Pose 모델 로드 (반드시 필요)
 pose_model = YOLO("./learned_pt_file/yolov8n-pose.pt")
 
 # Mediapipe Hands 설정
